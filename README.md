@@ -39,3 +39,39 @@
   > 最终应用 eval-source-map <br>
   > 使用eval打包源文件模块，在同一个文件中生成干净的完整的source map。这个选项可以在不影响构建速度的前提下生成完整的sourcemap，但是对打包后输出的JS文件的执行具有性能和安全的隐患。不过在开发阶段这是一个非常好的选项，但是在生产阶段一定不要用这个选项
 
+```json
+// 附 .babelrc babel配置文件
+{
+    "presets": [
+        "react",
+        "es2015"
+    ],
+    "plugins": [
+        "transform-decorators-legacy",
+        "transform-class-properties"
+    ],
+    "env": {
+    "development": {
+      "plugins": [
+        [
+          "react-transform",
+          {
+            "transforms": [
+              {
+                "transform": "react-transform-hmr",
+                "imports": [
+                  "react"
+                ],
+                "locals": [
+                  "module"
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}
+```
+
